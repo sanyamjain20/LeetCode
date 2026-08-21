@@ -8,7 +8,6 @@ public:
         int n = coins.size();
         long long ans = 0;
 
-        // Inclusion-exclusion
         for (int mask = 1; mask < (1 << n); mask++) {
             long long L = 1;
             int bits = 0;
