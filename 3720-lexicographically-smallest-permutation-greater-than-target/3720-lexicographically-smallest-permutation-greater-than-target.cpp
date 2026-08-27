@@ -15,8 +15,7 @@ public:
             if (f[x] > 0) {
                 ans += target[i];
                 f[x]--;
-            } 
-            else {
+            } else {
                 int j = x + 1;
 
                 while (j < 26 && f[j] == 0)
@@ -32,8 +31,6 @@ public:
                     return ans;
                 }
 
-                // Cannot continue at position i.
-                // Backtrack through the characters actually used.
                 for (int k = i - 1; k >= 0; k--) {
                     f[target[k] - 'a']++;
 
