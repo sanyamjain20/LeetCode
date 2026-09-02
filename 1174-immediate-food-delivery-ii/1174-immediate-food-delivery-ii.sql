@@ -5,8 +5,8 @@ SELECT ROUND(AVG(
     END
 )*100,2) AS immediate_percentage 
 FROM Delivery d
-WHERE order_date = (
-    SELECT MIN(order_date)
+WHERE (customer_id, order_date) in (
+    SELECT customer_id, min(order_date)
     FROM Delivery
     WHERE customer_id = d.customer_id
 );
