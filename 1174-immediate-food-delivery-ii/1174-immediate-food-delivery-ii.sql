@@ -8,5 +8,5 @@ FROM Delivery d
 WHERE (customer_id, order_date) in (
     SELECT customer_id, min(order_date)
     FROM Delivery
-    WHERE customer_id = d.customer_id
+    GROUP BY customer_id
 );
