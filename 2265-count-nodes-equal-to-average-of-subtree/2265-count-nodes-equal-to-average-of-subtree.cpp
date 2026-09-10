@@ -12,22 +12,20 @@
  */
 class Solution {
 public:
-    int sum(TreeNode* root) {
+    pair<int, int> helper(TreeNode* root, int &ans) {
         if (!root)
-            return 0;
-        return root->val + sum(root->left) + sum(root->right);
-    }
-    int count(TreeNode* root) {
-        if (!root)
-            return 0;
-        return 1 + count(root->left) + count(root->right);
+            return {0, 0};
+        auto left = helper(root->left, ans);
+        auto right = helper(root->right, ans);
+        int sum = root->val + left.first + right.first;
+        int count = 1 + left.second + right.second;
+        if (root->val == sum / count)
+            ans++;
+        return {sum, count};
     }
     int averageOfSubtree(TreeNode* root) {
-        if (!root)
-            return 0;
-        if (root->val == sum(root) / count(root))
-            return 1 + averageOfSubtree(root->left) +
-                   averageOfSubtree(root->right);
-        return averageOfSubtree(root->left) + averageOfSubtree(root->right);
+        int ans = 0;
+        helper(root, ans);
+        return ans;
     }
 };
