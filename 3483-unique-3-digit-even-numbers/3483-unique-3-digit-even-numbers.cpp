@@ -16,8 +16,7 @@ public:
                     int o = digits[k];
                     if (o % 2 == 1 || k == i || k == j)
                         continue;
-                    if (h * 100 + t * 10 + o >= 100)
-                        s.insert(h * 100 + t * 10 + o);
+                    s.insert(h * 100 + t * 10 + o);
                 }
             }
         }
