@@ -6,22 +6,23 @@
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
- * right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
 class Solution {
 public:
+TreeNode* helper(vector<int>& nums, int left, int right) {
+    if (left > right) return nullptr;
+
+    int mid = left + (right - left) / 2;
+    TreeNode* root = new TreeNode(nums[mid]);
+    root->left = helper(nums, left, mid - 1);
+    root->right = helper(nums, mid + 1, right);
+
+    return root;
+}
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0)
-            return NULL;
-        int mid = n / 2;
-        TreeNode* root = new TreeNode(nums[mid]);
-        vector<int> l(nums.begin(), nums.begin() + mid);
-        vector<int> r(nums.begin() + mid + 1, nums.end());
-        root->left = sortedArrayToBST(l);
-        root->right = sortedArrayToBST(r);
-        return root;
+     return helper(nums, 0, nums.size() - 1);
+        
     }
 };
