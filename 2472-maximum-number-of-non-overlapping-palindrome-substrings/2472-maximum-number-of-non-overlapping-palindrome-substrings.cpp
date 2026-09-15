@@ -1,38 +1,25 @@
 class Solution {
 public:
+    bool isPalindrome(string s, int l, int r) {
+        while (l < r) {
+            if (s[l++] != s[r--])
+                return false;
+        }
+        return true;
+    }
     int maxPalindromes(string s, int k) {
         int n = s.size();
-        vector<vector<bool>> dp(n, vector<bool>(n, false));
-        vector<pair<int, int>> intervals;
+        int count = 0;
 
-        for (int len = 1; len <= n; len++) {
-            for (int i = 0; i + len <= n; i++) {
-                int j = i + len - 1;
-
-                if (s[i] == s[j] && (len <= 2 || dp[i + 1][j - 1])) {
-                    dp[i][j] = true;
-
-                    if (len >= k)
-                        intervals.push_back({i, j});
-                }
+        for (int i = 0; i <= n - k; i++) {
+            if (isPalindrome(s, i, i + k - 1)) {
+                count++;
+                i += k - 1;
+            } else if (i + k < n && isPalindrome(s, i, i + k)) {
+                count++;
+                i += k;
             }
         }
-
-        sort(intervals.begin(), intervals.end(),
-             [](auto &a, auto &b) {
-                 return a.second < b.second;
-             });
-
-        int ans = 0;
-        int lastEnd = -1;
-
-        for (auto &[start, end] : intervals) {
-            if (start > lastEnd) {
-                ans++;
-                lastEnd = end;
-            }
-        }
-
-        return ans;
+        return count;
     }
 };
