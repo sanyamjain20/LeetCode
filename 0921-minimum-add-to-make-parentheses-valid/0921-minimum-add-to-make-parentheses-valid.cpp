@@ -7,7 +7,7 @@ public:
             if (ch == '(')
                 st.push(ch);
             else {
-                if (st.empty() || st.top() == ')')
+                if (st.empty())
                     ans++;
                 else {
                     st.pop();
