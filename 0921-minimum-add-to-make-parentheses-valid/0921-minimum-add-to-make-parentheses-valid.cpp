@@ -2,7 +2,7 @@ class Solution {
 public:
     int minAddToMakeValid(string s) {
         int ans = 0;
-        stack<int> st;
+        stack<char> st;
         for (char& ch : s) {
             if (ch == '(')
                 st.push(ch);
@@ -10,7 +10,6 @@ public:
                 if (st.empty() || st.top() == ')')
                     ans++;
                 else {
-                    char t = st.top();
                     st.pop();
                 }
             }
