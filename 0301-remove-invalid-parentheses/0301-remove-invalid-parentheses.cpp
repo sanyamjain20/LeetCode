@@ -37,8 +37,6 @@ public:
         set<string> ans;
         string temp = "";
         solve(s, 0, 0, l, r, temp, ans);
-        if (ans.size() == 0)
-            return {""};
         vector<string> res(ans.begin(), ans.end());
         return res;
     }
