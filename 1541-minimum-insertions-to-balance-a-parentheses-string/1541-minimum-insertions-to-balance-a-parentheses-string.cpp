@@ -2,30 +2,27 @@ class Solution {
 public:
     int minInsertions(string s) {
         int ans = 0;
-        stack<char> st;
+        int cnt=0;
         int i = 0;
         while (s[i] != '\0') {
             if (s[i] == '(')
-                st.push(s[i]);
+                cnt++;
             else {
-                if (st.empty()) {
+                if (cnt==0) {
                     ans++;
-                    st.push('(');
+                    cnt++;
                 }
                 if (s[i + 1] == ')') {
-                    st.pop();
+                    cnt--;
                     i++;
                 } else{
                     ans++;
-                    st.pop();
+                    cnt--;
                 }
             }
             i++;
         }
-        while (!st.empty()) {
-            st.pop();
-            ans += 2;
-        }
+        ans+=2*cnt;
         return ans;
     }
 };
