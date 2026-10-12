@@ -24,20 +24,21 @@ public:
         queue<Node*> q;
         Node* curr;
         q.push(root);
+        q.push(NULL);
         while (!q.empty()) {
             curr = q.front();
             q.pop();
+            if(curr==NULL){
+                if(!q.empty())
+                q.push(NULL);
+                continue;
+            }
             if (!q.empty())
                 curr->next = q.front();
             if (curr->left)
                 q.push(curr->left);
             if (curr->right)
                 q.push(curr->right);
-        }
-        curr = root;
-        while (curr) {
-            curr->next = NULL;
-            curr = curr->right;
         }
         return root;
     }
