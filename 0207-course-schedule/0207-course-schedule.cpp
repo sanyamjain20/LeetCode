@@ -4,7 +4,7 @@ public:
         int n = numCourses;
         vector<int> id(n, 0);
         queue<int> q;
-        vector<int> ans;
+        int cnt=0;
         vector<vector<int>> adj(n);
         for (auto& x : prerequisites) {
             adj[x[1]].push_back(x[0]);
@@ -17,15 +17,13 @@ public:
         while (!q.empty()) {
             int x = q.front();
             q.pop();
-            ans.push_back(x);
+            cnt++;
             for (int& e : adj[x]) {
                 id[e]--;
                 if (id[e] == 0)
                     q.push(e);
             }
         }
-        if (ans.size() == n)
-            return true;
-        return false;
+        return cnt==n?true:false;
     }
 };
