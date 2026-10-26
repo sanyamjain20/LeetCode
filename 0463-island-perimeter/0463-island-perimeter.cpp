@@ -4,7 +4,7 @@ public:
         int n =grid.size();
         int m = grid[0].size();
         
-        if(r<0||r==n||c<0||c==m)return 1;
+        if(r<0||r>=n||c<0||c>=m)return 1;
         if(grid[r][c]==0)return 1;
         if(vis[r][c])return 0;
         vis[r][c]=1;
