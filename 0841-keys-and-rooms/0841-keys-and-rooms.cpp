@@ -18,6 +18,6 @@ public:
                 }
             }
         }
-        return cnt==n?true:false;
+        return cnt==n;
     }
 };
