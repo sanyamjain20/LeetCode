@@ -1,16 +1,18 @@
 class Solution {
 public:
     void p(vector<vector<int>>& graph, vector<vector<int>>& ans,
-              vector<int> &path, int u, int d) {
+           vector<int>& path, int u, int d) {
         path.push_back(u);
+
         if (u == d) {
             ans.push_back(path);
-            return;
+        } else {
+            for (int v : graph[u]) {
+                p(graph, ans, path, v, d);
+            }
         }
-        for(int &v:graph[u]){
-            p(graph,ans,path,v,d);
+
         path.pop_back();
-        }
     }
 
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
