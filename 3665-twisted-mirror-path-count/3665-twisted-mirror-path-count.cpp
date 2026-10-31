@@ -31,8 +31,6 @@ public:
             m, vector<vector<long long>>(n, vector<long long>(2, 0))
         );
 
-        if (grid[0][0] == 1)
-            return 0;
 
         dp[0][0][0] = 1;
 
