@@ -1,11 +1,13 @@
 class Solution {
 public:
     bool dfs(vector<vector<int>>& graph, int u, vector<int>& vis) {
+        if (vis[u] == 1)
+            return false;
         if (vis[u] == 2)
             return true;
         vis[u] = 1;
         for (int v : graph[u]) {
-            if (vis[v]==1 || !dfs(graph, v, vis))
+            if (!dfs(graph, v, vis))
                 return false;
         }
         vis[u] = 2;
